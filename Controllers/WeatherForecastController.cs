@@ -15,20 +15,55 @@ public class WeatherForecastController : ControllerBase
 
     private readonly ILogger<WeatherForecastController> _logger;
 
+    private static List<WeatherForecast> ListWeatherForecast = new List<WeatherForecast>();
+
     public WeatherForecastController(ILogger<WeatherForecastController> logger)
     {
         _logger = logger;
+
+        if (ListWeatherForecast == null || !ListWeatherForecast.Any())
+        {
+            // Any() -> Verifica si la lista tiene algun registro
+
+            ListWeatherForecast = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            {
+                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+                TemperatureC = Random.Shared.Next(-20, 55),
+                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+            }).ToList();
+        }
     }
 
-    [HttpGet(Name = "GetWeatherForecast")]  // Creacion del EndPoint
+    /*
+
+    [HttpVerb]
+    public dataType FunctionName()
+    {
+        return value;
+    }
+
+    */
+
+    [HttpGet(Name = "GetWeatherForecast")]
     public IEnumerable<WeatherForecast> Get()
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        {
-            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        })
-        .ToArray();
+        return ListWeatherForecast;
+    }
+
+    [HttpPost]
+    public IActionResult Post(WeatherForecast weatherForecast)
+    {
+        // IActionResult -> Tipo de dato utilizado para los retornos en REST
+        ListWeatherForecast.Add(weatherForecast);
+
+        return Ok();
+    }
+
+    [HttpDelete("{index}")] // {elementFromUrl} -> Especificamos que dentro de la URL vendrá algun elemento que utilizaremos en el codigo
+    public IActionResult Delete(int elementIndex)
+    {
+        ListWeatherForecast.RemoveAt(elementIndex);
+
+        return Ok();
     }
 }
