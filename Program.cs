@@ -1,3 +1,5 @@
+// Contiene toda la configuracion del proyecto (incluyendo la forma en la que se va a aejecutar) 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen();   // Swagger -> Ayuda a generar documentacion para APIs
 
 var app = builder.Build();
 

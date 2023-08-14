@@ -1,3 +1,5 @@
+// Modelo WeatherForecast
+
 namespace WebApi;
 
 public class WeatherForecast
