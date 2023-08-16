@@ -17,7 +17,7 @@ public class WeatherForecastController : ControllerBase
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
-    private readonly ILogger<WeatherForecastController> _logger;
+    private readonly ILogger<WeatherForecastController> _logger;    // Loggin del controlador
 
     private static List<WeatherForecast> ListWeatherForecast = new List<WeatherForecast>();
 
@@ -56,6 +56,8 @@ public class WeatherForecastController : ControllerBase
     // [Route("[action]/weatherforecast")]  -> Ruta similar a la que se encuentra en la linea 51, utiliza el nombre dle metodo ("Get") y otra palabra ("weatherforecast")
     public IEnumerable<WeatherForecast> Get()
     {
+        _logger.LogDebug("Retornando la lista de weatherForecast");
+        // LogLevel("message") -> Muestra el mensaje en la consola
         return ListWeatherForecast;
     }
 
