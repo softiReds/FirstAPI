@@ -62,7 +62,7 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Post(WeatherForecast weatherForecast)
+    public IActionResult Post([FromBody] WeatherForecast weatherForecast)
     {
         // IActionResult -> Tipo de dato utilizado para los retornos en REST
         ListWeatherForecast.Add(weatherForecast);

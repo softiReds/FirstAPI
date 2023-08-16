@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using webapi;
 
 namespace WebApi.Controllers;
 
@@ -6,14 +7,17 @@ namespace WebApi.Controllers;
 [Route("api/[controller]")]
 public class HelloWorlController : ControllerBase
 {
+    TareasContext dbContext;
+
     private readonly IHelloWorldService _helloWorldService;
 
     private readonly ILogger<HelloWorlController> _logger;
 
-    public HelloWorlController(IHelloWorldService helloWorldService, ILogger<HelloWorlController> logger)
+    public HelloWorlController(IHelloWorldService helloWorldService, ILogger<HelloWorlController> logger, TareasContext context)
     {
         this._logger = logger;
         this._helloWorldService = helloWorldService;
+        this.dbContext = context;
     }
 
     [HttpGet]
@@ -21,5 +25,13 @@ public class HelloWorlController : ControllerBase
     {
         _logger.LogInformation("Mostrando la informacion desde la dependencia");
         return Ok(_helloWorldService.GetHelloWorld());
+    }
+
+    [HttpGet]
+    [Route("createdb")]
+    public IActionResult CreateDataBase()
+    {
+        dbContext.Database.EnsureCreated();
+        return Ok();
     }
 }

@@ -1,4 +1,5 @@
 // Contiene toda la configuracion del proyecto (incluyendo la forma en la que se va a aejecutar) 
+using webapi;
 using webapi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();   // Swagger -> Ayuda a generar documentacion para APIs
+
+builder.Services.AddSqlServer<TareasContext>(builder.Configuration.GetConnectionString("localConnection"));
 
 // La inyeccion de dependencias debe hacerse antes de que se compile la aplicacion, la inyeccion de dependencias es una forma para agregar funcionalidades a una aplicacion (especificamente, a los controladores), facilitando la mantencion del codigo ya que separa las responsabilidades de la aplicacion
 builder.Services.AddScoped<IHelloWorldService, HelloWorldService>();

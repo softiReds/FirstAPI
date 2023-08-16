@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "v5Anhy5NwedjXSGs0e+aNEBvCVci9lS4OPdKQPnTedq3Bk20V1k+GU16dCO3+e6wKFnQZ7WZfU8w4Gyid+/wsQ==",
+  "dgSpecHash": "NJ+QeOKV/LACCZJIcTfAud8U5ooJWUnf8L301XFuO5Tki86u7NgOcvOUUHpj5SNpzrEQQjEN+zVUcMFetUtA5w==",
   "success": true,
-  "projectFilePath": "c:\\Users\\santi\\OneDrive\\Documentos\\SantiagoRojas\\Estudio\\Platzi\\Desarrollo\\APIS .NET\\WebApi\\WebApi.csproj",
+  "projectFilePath": "C:\\Users\\santi\\OneDrive\\Documentos\\SantiagoRojas\\Estudio\\Platzi\\Desarrollo\\APIS .NET\\WebApi\\WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\santi\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\santi\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
