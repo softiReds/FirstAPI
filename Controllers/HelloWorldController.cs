@@ -16,6 +16,7 @@ public class HelloWorlController : ControllerBase
         this._helloWorldService = helloWorldService;
     }
 
+    [HttpGet]
     public IActionResult Get()
     {
         _logger.LogInformation("Mostrando la informacion desde la dependencia");

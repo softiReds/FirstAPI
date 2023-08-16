@@ -22,9 +22,9 @@ var app = builder.Build();
 // Middlewares actuales del proyectos (Los metodos que inicien con "USE" son middelwares) {
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())    // Solo se configura la documentacion swagger si el ambiente del proyecto es de desarrollo (ya que, la documentacion de la API no debe ser publica en los ambientes de produccion para evitar hackeos)
 {
-    app.UseSwagger();
+    app.UseSwagger();   // URL para acceder a la documentacion de swagger -> servidor/swagger
     app.UseSwaggerUI();
 }
 
