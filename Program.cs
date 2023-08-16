@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();   // Swagger -> Ayuda a generar documentacion para APIs
 
-// La inyeccion de dependencias debe hacerse antes de que se compile la aplicacion
+// La inyeccion de dependencias debe hacerse antes de que se compile la aplicacion, la inyeccion de dependencias es una forma para agregar funcionalidades a una aplicacion (especificamente, a los controladores), facilitando la mantencion del codigo ya que separa las responsabilidades de la aplicacion
 builder.Services.AddScoped<IHelloWorldService, HelloWorldService>();
 // AddScoped<interface, class>() -> Crea una instancia de la dependencia que se está inyectando. Cada vez que se inyecte la interfaz, se crea un nuevo objeto del segundo parametro internamente. La interfaz es lo que reciben todos los controladores que usen esta dependencia, y el tipo del objeto que se va a crear es del tipo del segundo parametro (la clase). Crea uno nuevo por cada solicitud pero es el mismo durante la solicitud.
 // AddSigleton() -> Cre una unica instancia de la dependencia a nivel de toda la API. Hace que se creen en memoria y que permanezca ahí (independientemente de la cantidad de request que se hagan). La misma instancia es inyectada y utilizada por todas las clases que lo utilicen

@@ -17,7 +17,7 @@ public class WeatherForecastController : ControllerBase
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
-    private readonly ILogger<WeatherForecastController> _logger;    // Loggin del controlador
+    private readonly ILogger<WeatherForecastController> _logger;    // Loggin del controlador -> Se utiliza para registrar informacion, advertencias y errores en tiempo de ejecucion
 
     private static List<WeatherForecast> ListWeatherForecast = new List<WeatherForecast>();
 
