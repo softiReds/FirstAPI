@@ -1,7 +1,7 @@
 using webapi;
 using webapi.Models;
 
-namespace weapi.Services;
+namespace webapi.Services;
 
 public class CategoriaService : ICategoriaService
 {

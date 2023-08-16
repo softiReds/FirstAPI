@@ -1,4 +1,5 @@
 // Contiene toda la configuracion del proyecto (incluyendo la forma en la que se va a aejecutar) 
+using webapi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,11 @@ builder.Services.AddScoped<IHelloWorldService, HelloWorldService>();
 // AddSigleton() -> Cre una unica instancia de la dependencia a nivel de toda la API. Hace que se creen en memoria y que permanezca ahí (independientemente de la cantidad de request que se hagan). La misma instancia es inyectada y utilizada por todas las clases que lo utilicen
 // AddTransient<>() -> Crea una instancia de la clase cada vez que se utiliza la dependencia. Es decir, es un nuevo objeto por cada request ya que la clase que implementa la dependencia creara su propia instancia (la cual será nueva por cada reuqest que se haga)
 
-// builder.Services.AddScoped<IHelloWorldService>(e => new HelloWorldService());   // Inyeccion similar a la de la linea 13
+// builder.Services.AddScoped<IHelloWorldService>(e => new HelloWorldService());   // Inyeccion similar a la de la linea 13, se utiliza cuando el constructor de la clase requiere de algun parametro
+
+builder.Services.AddScoped<ICategoriaService, CategoriaService>();
+builder.Services.AddScoped<ITareaService, TareaService>();
+
 
 var app = builder.Build();
 
