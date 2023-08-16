@@ -9,6 +9,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();   // Swagger -> Ayuda a generar documentacion para APIs
 
+// La inyeccion de dependencias debe hacerse antes de que se compile la aplicacion
+builder.Services.AddScoped<IHelloWorldService, HelloWorldService>();
+// AddScoped<interface, class>() -> Crea una instancia de la dependencia que se está inyectando. Cada vez que se inyecte la interfaz, se crea un nuevo objeto del segundo parametro internamente. La interfaz es lo que reciben todos los controladores que usen esta dependencia, y el tipo del objeto que se va a crear es del tipo del segundo parametro (la clase). Crea uno nuevo por cada solicitud pero es el mismo durante la solicitud.
+// AddSigleton() -> Cre una unica instancia de la dependencia a nivel de toda la API. Hace que se creen en memoria y que permanezca ahí (independientemente de la cantidad de request que se hagan). La misma instancia es inyectada y utilizada por todas las clases que lo utilicen
+// AddTransient<>() -> Crea una instancia de la clase cada vez que se utiliza la dependencia. Es decir, es un nuevo objeto por cada request ya que la clase que implementa la dependencia creara su propia instancia (la cual será nueva por cada reuqest que se haga)
+
+// builder.Services.AddScoped<IHelloWorldService>(e => new HelloWorldService());   // Inyeccion similar a la de la linea 13
+
 var app = builder.Build();
 
 // Middlewares actuales del proyectos (Los metodos que inicien con "USE" son middelwares) {
@@ -29,7 +37,7 @@ app.UseAuthorization();
 // Los custom middlewares deben ir entre el middleWare "UseAutorizathion" y El "Mapontrollers"
 // app.UseWelcomePage();   // UseWelcomePage() -> Permite añadir una pagina de bienvenida con la informacion general de la API (Desde el navegador)
 
-app.UseTimeMiddleware();    // Utilizamos el customMiddleware
+// app.UseTimeMiddleware();    // Utilizamos el customMiddleware
 
 app.MapControllers();
 
